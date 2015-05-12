@@ -5,13 +5,15 @@
     <%= link_to 'Leave Comment', new_post_comment_path(post) %>
     <%= link_to "Edit #{post.name}", edit_post_path(post) %>
     <%= link_to "Delete #{post.name}", post_path(post), method: :delete %>
-    <h3>Reviews for <%= post.name %></h3>
+    <h3>Comments for <%= post.name %></h3>
 
       <% if post.comments.any? %>
         <ul>
           <% post.comments.each do |comment| %>
             <li>
               <%= comment.message %>
+              <%= link_to "Edit Comment", edit_post_comment_path(post, comment) %>
+              <%= link_to "Delete Comment", post_comment_path(post, comment), method: :delete %>
             </li>
           <% end %>
         </ul>

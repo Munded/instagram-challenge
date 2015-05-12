@@ -47,19 +47,55 @@ feature 'posts' do
     end
 
     scenario 'let a user edit a post' do
-     visit '/posts'
-     click_link 'Edit Chin'
-     fill_in 'Name', with: 'Chinzzz'
-     click_button 'Update Post'
-     expect(page).to have_content 'Chinzzz'
-     expect(current_path).to eq '/posts'
+      visit '/posts'
+      click_link 'Edit Chin'
+      fill_in 'Name', with: 'Chinzzz'
+      click_button 'Update Post'
+      expect(page).to have_content 'Chinzzz'
+      expect(current_path).to eq '/posts'
     end
+
+    scenario 'cannot edit a post if not signed in' do
+      click_link 'Sign out'
+      click_link 'Edit Chin'
+      expect(current_path).to eq '/users/sign_in'
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
+    end
+
+    scenario 'cannot edit a post if did not create' do
+      click_link 'Sign out'
+      sign_up('test2@test.com', '12345678')
+      visit '/posts'
+      click_link 'Edit Chin'
+      fill_in 'Name', with: 'Chinzzz'
+      click_button 'Update Post'
+      expect(page).to have_content 'Cannot edit post'
+      expect(current_path).to eq '/posts'
+    end
+
 
     scenario 'removes a post when a user clicks a delete link' do
       visit '/posts'
       click_link 'Delete Chin'
       expect(page).not_to have_content 'Chin'
       expect(page).to have_content 'Post deleted successfully'
+    end
+
+    scenario 'cannot remove a post if not signed in' do
+      click_link 'Sign out'
+      visit '/posts'
+      click_link 'Delete Chin'
+      expect(current_path).to eq '/users/sign_in'
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
+    end
+
+    scenario 'cannot remove a post if did not create' do
+      click_link 'Sign out'
+      sign_up('test2@test.com', '12345678')
+      visit '/posts'
+      click_link 'Delete Chin'
+      expect(page).to have_content 'Cannot delete post'
+      expect(current_path).to eq '/posts'
     end
   end
 

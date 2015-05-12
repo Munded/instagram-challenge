@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       redirect_to '/posts'
     else
@@ -29,14 +30,23 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    if current_user == @post.user
+      @post.update(post_params)
+      flash[:notice] = 'Post edited successfully'
+    else 
+      flash[:notice] = 'Cannot edit post'
+    end
     redirect_to '/posts'
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    flash[:notice] = 'Post deleted successfully'
+     @post = Post.find(params[:id])
+    if current_user == @post.user
+      @post.destroy
+      flash[:notice] = 'Post deleted successfully'
+    else
+      flash[:notice] = 'Cannot delete post'
+    end
     redirect_to '/posts'
   end
 

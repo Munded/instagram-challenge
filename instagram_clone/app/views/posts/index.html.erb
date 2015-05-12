@@ -1,0 +1,12 @@
+<% if @posts.all.any? %>
+  <% @posts.all.each do |post| %>
+    <%= link_to post.name, post_path(post) %>
+    <img src='<%= post.image %>'>
+    <%= link_to "Edit #{post.name}", edit_post_path(post) %>
+
+  <% end %>
+<% else %>
+  <h1>No posts yet</h1>
+<% end %>
+
+<a href='/posts/new'>Submit a Post</a>

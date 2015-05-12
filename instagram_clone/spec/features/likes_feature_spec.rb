@@ -7,7 +7,7 @@ feature 'likes' do
   include User_Helper
   include Post_Helper
   include Comment_Helper
-  
+
   before do
     sign_up('test@test.com', '12345678')
     create_post
@@ -19,15 +19,15 @@ feature 'likes' do
     expect(page).to have_content '0 likes'
   end
 
-  context 'can like a comment' do
+  context 'can like a post' do
 
-    scenario 'can like a comment if signed in' do
+    scenario 'can like a post if signed in' do
       visit '/posts'
       click_link 'Like Chin'
       expect(page).to have_content '1 likes'
     end
 
-    scenario 'cannot like a comment if not signed in' do
+    scenario 'cannot like a post if not signed in' do
       click_link 'Sign out'
       visit '/posts'
       click_link 'Like Chin'

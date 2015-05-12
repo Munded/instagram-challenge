@@ -38,7 +38,7 @@ feature 'reviewing' do
       visit '/posts'
       click_link 'Edit Comment'
       fill_in 'Message', with: 'ew'
-      click_link 'Update Comment'
+      click_button 'Update Comment'
       expect(page).to have_content 'ew'
     end
 
@@ -56,7 +56,7 @@ feature 'reviewing' do
       visit '/posts'
       click_link 'Edit Comment'
       fill_in 'Message', with: 'ew'
-      click_link 'Update Comment'
+      click_button 'Update Comment'
       expect(page).to have_content 'Cannot edit comment'
     end
 
@@ -68,6 +68,7 @@ feature 'reviewing' do
     end
 
     scenario 'cannot delete comment if not signed it' do
+      click_link 'Sign out'
       visit '/posts'
       click_link 'Delete Comment'
       expect(current_path).to eq '/users/sign_in'

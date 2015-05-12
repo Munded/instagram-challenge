@@ -1,15 +1,13 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PostsHelper. For example:
-#
-# describe PostsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-# RSpec.describe PostsHelper, type: :helper do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+module Post_Helper
+
+  def create_post
+    visit '/posts'
+    click_link 'Submit a Post'
+    fill_in 'Name', with: 'Chin'
+    fill_in 'Image', with: 'https://lh3.googleusercontent.com/-0wOhLe6FaEc/AAAAAAAAAAI/AAAAAAAAACU/dscpJHyiBNM/photo.jpg'
+    click_button 'Submit Post'
+  end
+  
+end

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:index, :show]
+  
   def index
     @posts = Post.all
   end
@@ -9,8 +11,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-    redirect_to '/posts'
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to '/posts'
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -33,7 +39,7 @@ class PostsController < ApplicationController
     flash[:notice] = 'Post deleted successfully'
     redirect_to '/posts'
   end
-  
+
   def post_params
     params.require(:post).permit(:name, :image, :description)
   end

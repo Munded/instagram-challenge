@@ -2,6 +2,13 @@
   <% @posts.all.each do |post| %>
     <%= link_to post.name, post_path(post) %>
     <img src='<%= post.image %>'>
+    <div> <%= post.likes.count %> likes </div>
+      <% post.likes.each do |like| %>
+        <% if like.user == current_user %>
+          <%= link_to "Unlike", post_like_path(post, like), method: :delete %>
+          <% end %>
+      <% end %>
+
     <%= link_to "Like #{post.name}", new_post_like_path(post) %>
     <%= link_to 'Leave Comment', new_post_comment_path(post) %>
     <%= link_to "Edit #{post.name}", edit_post_path(post) %>

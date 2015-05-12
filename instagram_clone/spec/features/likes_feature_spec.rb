@@ -24,6 +24,7 @@ feature 'likes' do
     scenario 'can like a post if signed in' do
       visit '/posts'
       click_link 'Like Chin'
+      click_button 'Yes'
       expect(page).to have_content '1 likes'
     end
 
@@ -35,6 +36,24 @@ feature 'likes' do
       expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
+    scenario 'can only like a post once' do
+      visit '/posts'
+      click_link 'Like Chin'
+      click_button 'Yes'
+      click_link 'Like Chin'
+      click_button 'Yes'
+      expect(page).to have_content 'have already liked this post'
+    end
+
+    scenario 'can unlike a post if liked the post' do
+      visit '/posts'
+      click_link 'Like Chin'
+      click_button 'Yes'
+      expect(page).to have_content 'Unlike'
+      click_link 'Unlike'
+      expect(page).to have_content '0 likes'
+      expect(page).to have_content 'Post has been unliked'
+    end
   end
   
 end

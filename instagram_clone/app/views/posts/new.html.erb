@@ -1,20 +1,31 @@
-<% if @post.errors.any? %>
-  <section id="errors" >
-    <h2> <%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved: </h2>
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </section>
-<% end %>
+<div class='form'>  
+  <% if @post.errors.any? %>
+    <section id="errors" >
+      <h2> <%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved: </h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
 
-<%= form_for @post do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :image %>
-  <%= f.text_field :image %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit 'Submit Post' %>
-<% end %>
+  <%= form_for @post do |f| %>
+    <div class="field">
+      <%= f.label :name %> 
+        <br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+        <br>
+      <%= f.text_field :image %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+        <br>
+      <%= f.text_field :description %>
+    <div class="field">
+    <%= f.submit 'Submit Post' %>
+  <% end %>
+</div>

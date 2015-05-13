@@ -1,9 +1,20 @@
-<%= form_for @post do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :image %>
-  <%= f.text_field :image %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit %>
-<% end %>
+<div class='form'>
+  <%= form_for @post do |f| %>
+    <div class="field">
+      <%= f.label :name %> 
+        <br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+        <br>
+      <%= f.text_field :image %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+        <br>
+      <%= f.text_field :description %>
+    <div class="field">
+    <%= f.submit 'Update Post' %>
+  <% end %>
+</div>

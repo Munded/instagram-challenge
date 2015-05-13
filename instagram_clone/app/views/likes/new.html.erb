@@ -1,5 +1,7 @@
-<%= form_for [@post, @like] do |f| %>
-  Do you want to 'like' this image?
-  <%= f.submit 'Yes' %>
-  <% end %>
-<%= button_to "No", root_path %>
+<div class='form'>
+  <%= form_for [@post, @like] do |f| %>
+    Do you want to 'like' this image?
+    <%= f.submit 'Yes' %>
+    <% end %>
+  <%= button_to "No", root_path %>
+<div class='form'>

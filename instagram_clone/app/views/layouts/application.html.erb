@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+ 
+<div class='header'>  
+  <h1> Instaclone </h1>
   <% if user_signed_in? %>
     <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
   <% else %>
@@ -17,7 +19,7 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-
+</div>
 <%= yield %>
 
 </body>

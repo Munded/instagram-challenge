@@ -1,36 +1,41 @@
-<% if @posts.all.any? %>
-  <% @posts.all.each do |post| %>
-    <%= link_to post.name, post_path(post) %>
-    <img src='<%= post.image %>'>
-    <div> <%= post.likes.count %> likes </div>
-      <% post.likes.each do |like| %>
-        <% if like.user == current_user %>
-          <%= link_to "Unlike", post_like_path(post, like), method: :delete %>
-          <% end %>
-      <% end %>
+<div id='box'> 
+  <% if @posts.all.any? %>
+    <% @posts.all.each do |post| %>
+      <h3><%= link_to post.name, post_path(post) %> </h3>
+       <br>
+      <img src='<%= post.image %>'>
+      <div> <%= post.likes.count %> likes </div>
+        <% post.likes.each do |like| %>
+          <% if like.user == current_user %>
+            <%= link_to "Unlike", post_like_path(post, like), method: :delete %>
+            <% end %>
+        <% end %>
 
-    <%= link_to "Like #{post.name}", new_post_like_path(post) %> <br>
-    <%= link_to 'Leave Comment', new_post_comment_path(post) %>
-    <%= link_to "Edit #{post.name}", edit_post_path(post) %>
-    <%= link_to "Delete #{post.name}", post_path(post), method: :delete %>
-    <h3>Comments for <%= post.name %></h3>
+      <%= link_to "Like #{post.name}", new_post_like_path(post) %>
+      <%= link_to 'Leave Comment', new_post_comment_path(post) %>
+      <br>
+      <%= link_to "Edit #{post.name}", edit_post_path(post) %>
+      <%= link_to "Delete #{post.name}", post_path(post), method: :delete %>
+      <h3>Comments for <%= post.name %></h3>
 
-      <% if post.comments.any? %>
-        <ul>
-          <% post.comments.each do |comment| %>
-            <li>
-              <%= comment.message %>
-              <%= link_to "Edit Comment", edit_post_comment_path(post, comment) %>
-              <%= link_to "Delete Comment", post_comment_path(post, comment), method: :delete %>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>No comments.</p>
-      <% end %>
+        <% if post.comments.any? %>
+          <ul>
+            <% post.comments.each do |comment| %>
+              <li>
+                <h4><%= comment.message %></h4>
+                  <br>
+                <%= link_to "Edit Comment", edit_post_comment_path(post, comment) %>
+                <%= link_to "Delete Comment", post_comment_path(post, comment), method: :delete %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No comments.</p>
+        <% end %>
+    <% end %>
+  <% else %>
+    <h1>No posts yet</h1>
   <% end %>
-<% else %>
-  <h1>No posts yet</h1>
-<% end %>
 
-<a href='/posts/new'>Submit a Post</a>
+  <a href='/posts/new'>Submit a Post</a>
+</div>

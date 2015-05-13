@@ -25,7 +25,7 @@ feature 'likes' do
       visit '/posts'
       click_link 'Like Chin'
       click_button 'Yes'
-      expect(page).to have_content '1 likes'
+      expect(page).to have_content '1 like'
     end
 
     scenario 'cannot like a post if not signed in' do

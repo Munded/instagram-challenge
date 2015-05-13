@@ -4,7 +4,7 @@
       <h3><%= link_to post.name, post_path(post) %> </h3>
        <br>
       <img src='<%= post.image %>'>
-      <div> <%= post.likes.count %> likes </div>
+      <%= pluralize post.likes.count, 'like' %>
         <% post.likes.each do |like| %>
           <% if like.user == current_user %>
             <%= link_to "Unlike", post_like_path(post, like), method: :delete %>
@@ -19,16 +19,14 @@
       <h3>Comments for <%= post.name %></h3>
 
         <% if post.comments.any? %>
-          <ul>
             <% post.comments.each do |comment| %>
-              <li>
+              <div>
                 <h4><%= comment.message %></h4>
                   <br>
                 <%= link_to "Edit Comment", edit_post_comment_path(post, comment) %>
                 <%= link_to "Delete Comment", post_comment_path(post, comment), method: :delete %>
-              </li>
+              </div>
             <% end %>
-          </ul>
         <% else %>
           <p>No comments.</p>
         <% end %>

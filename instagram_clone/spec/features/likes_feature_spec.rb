@@ -21,10 +21,9 @@ feature 'likes' do
 
   context 'can like a post' do
 
-    scenario 'can like a post if signed in' do
+    scenario 'can like a post if signed in', js:true do
       visit '/posts'
       click_link 'Like Chin'
-      click_button 'Yes'
       expect(page).to have_content '1 like'
     end
 

@@ -18,10 +18,13 @@
   background-color: cornflowerblue;
  }
 
+ img{
+  max-height:400px;
+  max-width:500px;
+ }
+
  #box{
   background: white;
-  margin-left: 35%;
-  position: fixed;
   padding: 30px;
   text-align: center;
   border-radius: 20px;
@@ -30,6 +33,14 @@
   border-width: 4px;
   margin-top: 1%;
   margin-bottom: 1%;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
  }
 
  .form{

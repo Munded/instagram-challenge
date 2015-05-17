@@ -21,9 +21,10 @@ feature 'likes' do
 
   context 'can like a post' do
 
-    scenario 'can like a post if signed in', js:true do
+    scenario 'can like a post if signed in' do
       visit '/posts'
       click_link 'Like Chin'
+      click_button 'Yes'
       expect(page).to have_content '1 like'
     end
 
@@ -41,6 +42,7 @@ feature 'likes' do
       click_button 'Yes'
       click_link 'Like Chin'
       click_button 'Yes'
+      expect(page).to have_content '1 like'
       expect(page).to have_content 'have already liked this post'
     end
 
@@ -48,6 +50,7 @@ feature 'likes' do
       visit '/posts'
       click_link 'Like Chin'
       click_button 'Yes'
+      visit '/posts'
       expect(page).to have_content 'Unlike'
       click_link 'Unlike'
       expect(page).to have_content '0 likes'

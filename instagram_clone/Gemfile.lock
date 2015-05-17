@@ -242,7 +242,7 @@ DEPENDENCIES
   pg
   poltergeist
   rails (= 4.2.1)
-  rspec-rails
+  rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda

@@ -8,18 +8,18 @@ Instagram Challenge
  Instagram clone written in Ruby on Rails.
  
 **Technology Used:**
--Ruby on Rails
--Devise
+- Ruby on Rails
+- Devise
 
 **Testing**
--Rspec
+- Rspec
 
 **How to Run:**
--`$ rake s`
+- `$ rake s`
 
 
 **How to Test:**
--`$ rspec`
+- `$ rspec`
 
 
 **Things To Do To Improve:**

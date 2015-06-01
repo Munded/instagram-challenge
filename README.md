@@ -15,11 +15,11 @@ Instagram Challenge
 -Rspec
 
 **How to Run:**
-`$ rake s`
+-`$ rake s`
 
 
 **How to Test:**
-`$ rspec`
+-`$ rspec`
 
 
 **Things To Do To Improve:**

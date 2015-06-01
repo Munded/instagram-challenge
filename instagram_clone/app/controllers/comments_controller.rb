@@ -26,9 +26,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
-    if current_user == @comment.user
-      @comment.update(comment_params)
+    comment = Comment.find(params[:id])
+    if current_user_is_author(comment)
+      comment.update(comment_params)
       flash[:notice] = 'comment edited successfully'
     else 
       flash[:notice] = 'Cannot edit comment'
@@ -37,9 +37,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-     @comment = Comment.find(params[:id])
-    if current_user == @comment.user
-      @comment.destroy
+     comment = Comment.find(params[:id])
+    if current_user_is_author(comment)
+      comment.destroy
       flash[:notice] = 'Comment deleted successfully'
     else
       flash[:notice] = 'Cannot delete comment'
@@ -49,5 +49,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:message)
+  end
+
+  def current_user_is_author(comment)
+    current_user == comment.user
   end
 end

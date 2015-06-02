@@ -7,6 +7,8 @@ Instagram Challenge
 
  Instagram clone written in Ruby on Rails.
  
+ Heroku link: https://vast-anchorage-5409.herokuapp.com/
+ 
 **Technology Used:**
 - Ruby on Rails
 - Devise
